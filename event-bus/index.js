@@ -7,7 +7,7 @@ app.use(bodyParser.json());
 
 app.post('/events', async (req, res) => {
   const event = req.body;
-
+  console.log(event);
   try {
     //   Post service
     await axios.post('http://localhost:3000/events', event);

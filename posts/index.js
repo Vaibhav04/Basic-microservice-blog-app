@@ -22,17 +22,19 @@ app.post('/posts', async (req, res) => {
     title,
   };
 
-  await axios.post('http://localhost:3004/events', {
-    type: 'PostCreated',
-    data: {
-      id,
-      title,
-    },
-  });
-
-  console.log(req.body);
-
   res.status(201).send(posts[id]);
+
+  try {
+  await axios.post('http://localhost:3004/events', {
+      type: 'PostCreated',
+      data: {
+        id,
+        title,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 app.post('/events', (req, res) => {

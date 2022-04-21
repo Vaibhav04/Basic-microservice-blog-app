@@ -8,7 +8,8 @@ app.use(bodyParser.json());
 
 app.post('/events', async (req, res) => {
   const { type, data } = req.body;
-
+  console.log(req.body);
+  res.send({});
   if (type === 'CommentCreated') {
     const { id, postId, content } = data;
     const status = content.includes('orange') ? 'rejected' : 'approved';
@@ -23,12 +24,11 @@ app.post('/events', async (req, res) => {
           status,
         },
       });
-      res.send({});
     } catch (error) {
       console.log(error);
+      res.send(error);
     }
   }
-  res.send({});
 });
 
 app.listen(3002, () => {

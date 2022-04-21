@@ -7,11 +7,12 @@ const PostList = () => {
   const fetchPosts = async () => {
     const res = await axios.get('http://localhost:3003/posts');
     setPosts(res.data);
+    console.log(res.data);
   };
   useEffect(() => {
     fetchPosts();
   }, []);
-  console.log(posts);
+
   const postsMarkup = Object.values(posts).map((post) => {
     return (
       <div
